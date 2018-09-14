@@ -11,9 +11,9 @@ export default class Observer {
     }
   };
 
-  emit = (key, args) => {
+  emit = (key, ...args) => {
     if (this._messages[key]) {
-      this._messages[key].forEach(func => func(args));
+      this._messages[key].forEach(func => func(...args));
     }
   };
 

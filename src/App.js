@@ -5,9 +5,18 @@ const Fragment = React.Fragment;
 const CountStore = init({count: 0});
 const ShowStore = init({show: true});
 
-const addCount = () => CountStore.update(s => ({count: s.count + 1}));
-const minusCount = () => CountStore.update(s => ({count: s.count - 1}));
-const toggleShow = () => ShowStore.update(s => ({show: !s.show}));
+const addCount = async () => {
+  let state = await CountStore.update(s => ({count: s.count + 1}));
+  window.alert(JSON.stringify(state));
+};
+const minusCount = async () => {
+  let state = await CountStore.update(s => ({count: s.count - 1}));
+  window.alert(JSON.stringify(state));
+};
+const toggleShow = async () => {
+  let state = await ShowStore.update(s => ({show: !s.show}));
+  window.alert(JSON.stringify(state));
+};
 
 class App extends Component {
   componentDidMount() {

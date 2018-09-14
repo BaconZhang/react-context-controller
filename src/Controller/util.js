@@ -18,5 +18,6 @@ const equalFunc = isEqual => (objA, objB) => {
 }
 export const isFunction = t => typeOf(t) === 'Function';
 export const isObject = t => typeOf(t) === 'Object';
+export const isString = t => typeOf(t) === 'String';
 export const shallowEqual = equalFunc(is);
 export const deepEqual = equalFunc(deepEqual);
