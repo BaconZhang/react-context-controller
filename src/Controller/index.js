@@ -1,6 +1,6 @@
 import React from 'react';
 import Observer from './Observer';
-import { isFunction, isObject, isString, deepEqual } from './util';
+import { isFunction, isObject, isString, deepEqual, copyFrozenObject } from './util';
 
 const init = (initialState = {}) => {
   const observer = new Observer();
@@ -71,11 +71,11 @@ const init = (initialState = {}) => {
     },
     get: (picker) => {
       if (isString(picker)) {
-        return _state[picker];
+        return copyFrozenObject(_state[picker]);
       } else if (isFunction(picker)) {
-        return picker(_state);
+        return copyFrozenObject(picker(_state));
       } else {
-        return _state;
+        return copyFrozenObject(_state);
       }
     }, 
     PureConsumer: PureConsumer,

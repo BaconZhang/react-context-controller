@@ -21,3 +21,8 @@ export const isObject = t => typeOf(t) === 'Object';
 export const isString = t => typeOf(t) === 'String';
 export const shallowEqual = equalFunc(is);
 export const deepEqual = equalFunc(deepEqual);
+export const copyFrozenObject = (obj) => {
+  let temp = Object.assign({}, obj);
+  Object.freeze(temp);
+  return temp;
+}
