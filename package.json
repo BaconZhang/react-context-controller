@@ -2,6 +2,7 @@
   "name": "@bacon-zhang/react-context-controller",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://baconzhang.github.io/react-context-controller",
   "dependencies": {
     "husky": "^1.0.0-rc.14",
     "react": "^16.4.1",
