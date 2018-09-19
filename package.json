@@ -1,33 +1,21 @@
 {
-  "name": "@bacon-zhang/react-context-controller",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "https://baconzhang.github.io/react-context-controller",
-  "dependencies": {
-    "husky": "^1.0.0-rc.14",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
-  },
+  "name": "bz-react-ctx",
+  "version": "v0.0.5",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "./node_modules/.bin/babel ./src --out-dir ./lib ",
+    "p": "npm run build && npm publish"
   },
-  "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.3.2",
+    "react-scripts": "^1.1.4"
   },
   "devDependencies": {
-    "lint-staged": "^7.2.2",
-    "prettier": "1.14.2"
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0"
   }
 }
