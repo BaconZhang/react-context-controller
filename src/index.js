@@ -1,6 +1,6 @@
 import React from 'react';
 import Observer from './Observer';
-import { isFunction, isObject, isString, deepEqual, copyFrozenObject } from './util';
+import { isFunction, isObject, isString, deepEqual, copy } from './util';
 
 const init = (initialState = {}) => {
   const observer = new Observer();
@@ -19,7 +19,7 @@ const init = (initialState = {}) => {
         this.setState(updator, () => this.afterUpdateState(callback));
       } else {
         console.error('cannot setState if updator is not Object or Function');
-        return callback(null);
+        return callback(this.state);
       }
     };
 
@@ -27,12 +27,16 @@ const init = (initialState = {}) => {
       _state = this.state;
       return callback(this.state);
     };
-  
+
+    shouldComponentUpdate(nextProps, nextState) {
+      return !deepEqual(nextState, this.state);
+    }
+
     componentWillUnmount() {
       observer.off('_update', this.updateState);
       _state = null;
     };
-  
+
     render() {
       const { children } = this.props;
       return <Context.Provider value={this.state}>
@@ -53,6 +57,10 @@ const init = (initialState = {}) => {
   }
 
   class PureConsumer extends React.Component {
+    static defaultProps = {
+      picker: v => v,
+      children: () => null
+    };
     render() {
       const { picker, children } = this.props;
       return <Context.Consumer>
@@ -71,13 +79,13 @@ const init = (initialState = {}) => {
     },
     get: (picker) => {
       if (isString(picker)) {
-        return copyFrozenObject(_state[picker]);
+        return copy(_state[picker]);
       } else if (isFunction(picker)) {
-        return copyFrozenObject(picker(_state));
+        return copy(picker(_state));
       } else {
-        return copyFrozenObject(_state);
+        return copy(_state);
       }
-    }, 
+    },
     PureConsumer: PureConsumer,
   }
 };

@@ -4,10 +4,11 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel ./src --out-dir ./lib ",
-    "p": "npm run build && npm publish"
+    "p": "npm run build && npm publish",
+    "test": "react-scripts test --env=jsdom",
+    "coverage": "npm test -- --coverage"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.3.2",
     "react-scripts": "^1.1.4"
@@ -15,7 +16,11 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "chai": "^4.1.2",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0"
   }
 }
