@@ -1,6 +1,6 @@
 {
   "name": "bz-react-ctx",
-  "version": "v0.0.5",
+  "version": "v0.1.0",
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel ./src --out-dir ./lib ",
