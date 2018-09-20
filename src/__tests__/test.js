@@ -89,14 +89,12 @@ describe('test for bz-react-ctx', () => {
     const { Provider, Consumer, PureConsumer, update, get } = init(initialState);
     let renderCount = 0;
     const TestComponent = () => <Provider>
-      <Consumer>
-        {value => <PureConsumer data={value}>
-          {data => {
-            renderCount = renderCount + 1;
-            return <div id='test'>{data.count}</div>
-          }}
-        </PureConsumer>}
-      </Consumer>
+      <PureConsumer>
+        {data => {
+          renderCount = renderCount + 1;
+          return <div id='test'>{data.count}</div>
+        }}
+      </PureConsumer>}
     </Provider>;
     const wrapper = mount(<TestComponent />);
     const node = wrapper.find('#test');
