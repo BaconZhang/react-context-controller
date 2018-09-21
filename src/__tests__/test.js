@@ -46,6 +46,21 @@ describe('test for bz-react-ctx', () => {
     expect(node.getDOMNode().textContent).equal('20');
   });
 
+  it('reset', () => {
+    const { Provider, Consumer, reset, update, get } = init(initialState);
+    const TestComponent = () => <Provider>
+      <Consumer>
+        {value => <div id='test'>{value.count}</div>}
+      </Consumer>
+    </Provider>;
+    const wrapper = mount(<TestComponent />);
+    const node = wrapper.find('#test');
+    update(s => ({ count: s.count + 10 }));
+    expect(node.getDOMNode().textContent).equal('11');
+    reset();
+    expect(node.getDOMNode().textContent).equal('1');
+  });
+
   it('update with Provide unmount', () => {
     const { Provider, Consumer, PureConsumer, update, get } = init(initialState);
     const TestComponent = () => <Provider>

@@ -77,6 +77,11 @@ const init = (initialState = {}) => {
         observer.emit('_update', updator, (state) => state ? resolve(state) : reject(state));
       })
     },
+    reset: () => {
+      return new Promise((resolve) => {
+        observer.emit('_update', () => initialState, state => resolve(state))
+      })
+    },
     get: (picker) => {
       if (isString(picker)) {
         return copy(_state[picker]);
